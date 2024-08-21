@@ -22,7 +22,11 @@ app.use(error)
 app.use(error404)
 
 try {
-	app.listen(PORT)
+	app.listen(PORT, () => {
+		console.info("================================================================================")
+		console.info("| T-checker API успешно запущен и доступен по адресу http://localhost:" + PORT + "/api |")
+		console.info("================================================================================")
+	})
 } catch(error){
 	console.error("Ошибка инициализации приложения:\n", error.stack)
 }
