@@ -1,7 +1,7 @@
 const fs = require("fs")
 const os = require("os")
 
-module.exports = (req, res, next) => {
+logger = (req, res, next) => {
   const now = new Date()
   const hours = now.getHours()
   const minutes = now.getMinutes()
@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
 
   const { method, url } = req
   const userAgent = req.get("user-Agent")
-  const data = hours + ":" + minutes + ":" + seconds + "[" method + "] " + url + "(" + userAgent
+  const data = hours + ":" + minutes + ":" + seconds + "[" + method + "] " + url + "(" + userAgent
   
   // do log actions
   console.log("[logger]: ", data)
@@ -19,3 +19,6 @@ module.exports = (req, res, next) => {
   
   next()
 }
+
+module.exports = logger
+
