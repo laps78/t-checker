@@ -1,10 +1,13 @@
 const express = require('express')
+
 // connect middleware
 const logger = require('./src/middleware/logger/logger.js')
 const error = require('./src/middleware/error/error.js')
 const error404 = require('./src/middleware/error/error404.js')
+
 // load api request handlers
 const api_router_v0 = require('./src/api/v0/api_v0.js')
+
 // config environment
 const dotenv = require('dotenv')
 dotenv.config()
@@ -21,6 +24,7 @@ app.use('api/v0/', api_router_v0)
 app.use(error)
 app.use(error404)
 
+// make work
 try {
 	app.listen(PORT, () => {
 		console.info("================================================================================")
