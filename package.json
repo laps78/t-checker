@@ -1,0 +1,23 @@
+{
+  "name": "t-checker",
+  "version": "0.1.0",
+  "description": "Автоматизация контроля времени прихода/ухода с работы",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laps78/t-checker.git"
+  },
+  "keywords": [
+    "time",
+    "ckecker"
+  ],
+  "author": "L.A.P.S.Lab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laps78/t-checker/issues"
+  },
+  "homepage": "https://github.com/laps78/t-checker#readme"
+}
