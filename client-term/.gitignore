@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# hooli emu etot fail nahui?
+*lock.json
