@@ -1,67 +1,50 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import reactLogo from "./assets/react.s:vg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import workStatuses from "./preferences/workstatuses.data.js";
 
 function App() {
-  const workStatuses = [ 
-    {
-      name: "не работаю",
-      boolean: false,
-      id: 0,
-      comment: "Или забыл отметиться о прибытии...",
-    },
-    {
-      name: "работаю",
-      boolean: true,
-      id: 1,
-      comment: "Или забыл отметиться об уходе...",
-    },
-  ]
-  const currentWorkStatus = workStatuses[0] 
+  const currentWorkStatus = workStatuses[0];
   const [workStatus, setWorkStatus] = useState(currentWorkStatus);
+  const handleIncomeClick = (event) => {
+    console.info("[click!] Есть приход");
+  };
+  const handleOutcomeClick = (event) => {
+    console.info("[click!] Есть уход");
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>t-checker</h1>
-      <p>
-        Хочешь - пришел, а хочешь - ушел.
-        <br /> Главное это не забыть нажать нужную кнопку в приложении
-      </p>
       <header>
-        <div className="header_line">
-          t-checker
+        <div className="header__line">
+          <>t-checker</>
         </div>
-      </header>
+      </header>  
       <main>
-        <div className="status__holder">
-          <h1>{workStatus.name}</h1>
-          <p>{workStatus.comment}</p>
+        <h1>{"t-checker | " + workStatus.name}</h1>
+        <p className="current_working_status_paragraph">{workStatuses.comment}</p>
+        <p>
+          Хочешь - пришел, а хочешь - ушел.<br /> Главное это не забыть нажать нужную кнопку в приложении
+        </p>      
+        <div className="card">
+          <p>чуть позже можно будет ввести данные вручную с помощью формы</p>
+        </div>
+        <div className="footer">
+          <div
+            onClick={handleIncomeClick}
+            className="button footer-button footer-left-button">
+            Отметить приход
+          </div>
+          <div
+            onClick={handleOutcomeClick}
+            className="button footer-button footer-right-button">
+            Отметить уход
+          </div>
         </div>
       </main>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          счетчик рандомных вспышек спонтанного тапательного гнева<br/ > {count}
-        </button>
-        <p>Ввести данные вручную с помощью формы</p>
-      </div>
-      <div className="footer">
-        <div className="button footer-button footer-left-button">
-          приход
-        </div>
-        <div className="button footer-button footer-right-button">
-          уход
-        </div>
-      </div>
     </>
   );
 }
 
 export default App;
+
