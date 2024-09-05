@@ -32,6 +32,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0.1rem 0.1rem grey;
 }
 
 .logo__span {
@@ -48,7 +49,7 @@ header {
 }
 
 .burger__menu {
-  margin: 1rem;
+  margin-top: 2rem;
   display: flex;
   width: 2.5rem;
   height: 2.5rem;
@@ -84,7 +85,7 @@ footer {
 
 .button {
   color: #000000;
-  background-color: #ffffff;
+  background-color: #dadada;
 }
 
 .footer-button {
@@ -93,12 +94,14 @@ footer {
   height: 11rem;
   text-transform: uppercase;
   margin: 0.25rem;
+  margin-bottom: 3rem;
   min-width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   user-select: none;
+  border-radius: 0.5rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
