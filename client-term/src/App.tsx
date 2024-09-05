@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
+import DigitalClock from "./components/DigitalClock/DigitalClock.jsx";
 
 function App() {
   const currentWorkStatus = workStatuses[0];
@@ -28,10 +29,9 @@ function App() {
         </div>
       </header>
       <main>
-        <h1>{"t-checker | " + workStatus.name}</h1>
-        <p className="current_working_status_paragraph">
-          {workStatuses.comment}
-        </p>
+        <DigitalClock />
+        <h1>{`Я сейчас | ${workStatus.name}`}</h1>
+        <p className="current_working_status_paragraph">{workStatus.comment}</p>
         <p>
           Хочешь - пришел, а хочешь - ушел.
           <br /> Главное это не забыть нажать нужную кнопку в приложении
@@ -45,13 +45,13 @@ function App() {
           onClick={handleIncomeClick}
           className="button footer-button footer-left-button"
         >
-          Отметить приход
+          Приход
         </div>
         <div
           onClick={handleOutcomeClick}
           className="button footer-button footer-right-button"
         >
-          Отметить уход
+          Уход
         </div>
       </footer>
     </>
