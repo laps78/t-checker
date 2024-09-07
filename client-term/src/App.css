@@ -33,6 +33,7 @@ header {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0.1rem 0.1rem grey;
+  border-radius: 0 0 1rem 1rem;
 }
 
 .logo__span {
@@ -91,7 +92,7 @@ footer {
 .footer-button {
   font-weight: 700;
   font-size: 1.5rem;
-  height: 11rem;
+  height: 5rem;
   text-transform: uppercase;
   margin: 0.25rem;
   margin-bottom: 3rem;
@@ -101,7 +102,7 @@ footer {
   align-items: center;
   cursor: pointer;
   user-select: none;
-  border-radius: 0.5rem;
+  border-radius: 3rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
