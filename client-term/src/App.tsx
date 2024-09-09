@@ -1,17 +1,40 @@
 import { useState } from "react";
 import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
-import DigitalClock from "./components/DigitalClock/DigitalClock.jsx";
+import {
+  DigitalClock,
+  makeTimeStringValue,
+} from "./components/DigitalClock/DigitalClock.jsx";
 
 function App() {
   const currentWorkStatus = workStatuses[0];
   const [workStatus, setWorkStatus] = useState(currentWorkStatus);
-  const handleIncomeClick = (event) => {
-    console.info("[click!] Есть приход");
+  const handleIncomeClick = (event: MouseEvent | TouchEvent) => {
+    event.preventDefault();
+    if (workStatus === workStatuses[1]) {
+      return;
+    }
+    const date = new Date();
+    const createdDataObject = {
+      type: "checkIn",
+      timestamp: Number(date.getTime()),
+      title: makeTimeStringValue(date),
+    };
+    console.info("[click!] Есть приход:", createdDataObject);
     setWorkStatus(workStatuses[1]);
   };
-  const handleOutcomeClick = (event) => {
-    console.info("[click!] Есть уход");
+  const handleOutcomeClick = (event: MouseEvent | TouchEvent) => {
+    event.preventDefault();
+    if (workStatus === workStatuses[0]) {
+      return;
+    }
+    const date = new Date();
+    const createdDataObject = {
+      type: "checkOut",
+      timestamp: Number(date.getTime()),
+      title: makeTimeStringValue(date),
+    };
+    console.info("[click!] Есть уход:", createdDataObject);
     setWorkStatus(workStatuses[0]);
   };
   return (

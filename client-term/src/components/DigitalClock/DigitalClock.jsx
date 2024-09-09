@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function makeTimeStringValue(currentTime) {
+export function makeTimeStringValue(currentTime) {
   let hours = currentTime.getHours();
   hours < 10 ? (hours = `0${hours}`) : (hours = `${hours}`);
 
@@ -27,4 +27,4 @@ export function DigitalClock() {
   return currentTimeString;
 }
 
-export default DigitalClock;
+export default { DigitalClock, makeTimeStringValue };
