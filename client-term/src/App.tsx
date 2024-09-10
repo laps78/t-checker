@@ -9,6 +9,18 @@ import IDB from "./helpers/IDB-helper/IDB.helper.js";
 
 function App() {
   const db = new IDB();
+  const lastMarkSign = () => {
+    const lastmarkStored = localStorage.getItem("lastMark");
+    const lastmark = JSON.parse(lastmarkStored) || "";
+    console.log(lastmarkStored, lastmark);
+    const sign = `Последняя отметка: [ ${lastmark.type} ] ${String(
+      new Date(lastmark.timestamp)
+    )}`;
+    if (lastmark === "") {
+      return "";
+    }
+    return String(sign);
+  };
   let currentWorkStatus = workStatuses[0];
   if (localStorage.getItem("currentWorkStatus")) {
     const savedStatus: string = localStorage.getItem("currentWorkStatus");
@@ -30,6 +42,7 @@ function App() {
     db.save(newCheckMark);
     setWorkStatus(workStatuses[1]);
     localStorage.setItem("currentWorkStatus", JSON.stringify(workStatuses[1]));
+    localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
   };
   const handleOutcomeClick = (event: MouseEvent | TouchEvent) => {
     event.preventDefault();
@@ -46,6 +59,7 @@ function App() {
     db.save(newCheckMark);
     setWorkStatus(workStatuses[0]);
     localStorage.setItem("currentWorkStatus", JSON.stringify(workStatuses[0]));
+    localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
   };
   return (
     <>
@@ -65,6 +79,7 @@ function App() {
         <DigitalClock />
         <h1>{`Я сейчас | ${workStatus.name}`}</h1>
         <p className="current_working_status_paragraph">{workStatus.comment}</p>
+        <p className="last_mark_sign">{lastMarkSign()}</p>
         <p>
           Хочешь - пришел, а хочешь - ушел.
           <br /> Главное это не забыть нажать нужную кнопку в приложении

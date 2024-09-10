@@ -41,7 +41,8 @@ header {
   font-weight: 800;
 }
 
-.t-letter {
+.t-letter,
+.last_mark_sign {
   color: #0077ff;
 }
 
@@ -103,6 +104,11 @@ footer {
   cursor: pointer;
   user-select: none;
   border-radius: 3rem;
+}
+
+.footer-button:hover {
+  background-color: #0077ff;
+  color: #000000;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -23,9 +23,24 @@ class IDB {
   async save(checkMark) {
     try {
       await this.db.checkMarks.add(checkMark);
-    } catch (eror) {
+    } catch (error) {
       console.error(
         `[ IDB Module ] Ошибка добавления записи в базу данных: `,
+        error
+      );
+    }
+  }
+
+  /**
+   * этот рабочий асинхронный метод еще нигде не использован
+   */
+  async getLastMark() {
+    try {
+      const lastMark = await this.db.checkMarks.orderBy("timestamp").last();
+      return lastMark;
+    } catch (error) {
+      console.error(
+        `[ IDB Module ] Ошибка чтения записи в базе данных: `,
         error
       );
     }
