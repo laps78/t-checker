@@ -21,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/laps78/t-checker/issues"
   },
-  "homepage": ".",
   "dependencies": {
     "express": "^4.19.2"
   }
