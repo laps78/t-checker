@@ -6,6 +6,13 @@ import {
   makeTimeStringValue,
 } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
+import writeDataToFile from "./helpers/fs-helper/writeTXT.helper.js";
+
+export interface checkMark {
+  type: string;
+  timestamp: number;
+  title: string;
+}
 
 function App() {
   const db = new IDB();
@@ -61,6 +68,14 @@ function App() {
     localStorage.setItem("currentWorkStatus", JSON.stringify(workStatuses[0]));
     localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
   };
+  const handleExportLink = async () => {
+    try {
+      const data = await db.getAllMarks();
+      writeDataToFile(data);
+    } catch (error) {
+      console.error("Ошибка обработчика ссылки экспорта: ", error);
+    }
+  };
   return (
     <>
       <header>
@@ -86,6 +101,11 @@ function App() {
         </p>
         <div className="card">
           <p>чуть позже можно будет ввести данные вручную с помощью формы</p>
+          <p>
+            <a href="#" onClick={handleExportLink}>
+              Экспорт в файл
+            </a>
+          </p>
         </div>
       </main>
       <footer className="footer">

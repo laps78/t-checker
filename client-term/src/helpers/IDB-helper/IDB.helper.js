@@ -31,6 +31,11 @@ class IDB {
     }
   }
 
+  async getAllMarks() {
+    const arrayMarks = await this.db.checkMarks.toArray();
+    return arrayMarks;
+  }
+
   /**
    * этот рабочий асинхронный метод еще нигде не использован
    */

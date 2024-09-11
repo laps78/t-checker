@@ -1,6 +1,7 @@
 {
   "name": "t-checker",
   "version": "0.1.0",
+  "homepage": ".",
   "description": "Автоматизация контроля времени прихода/ухода с работы",
   "main": "index.js",
   "scripts": {
