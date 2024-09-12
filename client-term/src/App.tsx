@@ -93,14 +93,8 @@ function App() {
       <main>
         <DigitalClock />
         <h1>{`Я сейчас | ${workStatus.name}`}</h1>
-        <p className="current_working_status_paragraph">{workStatus.comment}</p>
         <p className="last_mark_sign">{lastMarkSign()}</p>
-        <p>
-          Хочешь - пришел, а хочешь - ушел.
-          <br /> Главное это не забыть нажать нужную кнопку в приложении
-        </p>
         <div className="card">
-          <p>чуть позже можно будет ввести данные вручную с помощью формы</p>
           <p>
             <a href="#" onClick={handleExportLink}>
               Экспорт в файл
