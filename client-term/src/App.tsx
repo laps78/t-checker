@@ -74,7 +74,7 @@ function App() {
       const data = await db.getAllMarks();
       // working on data to export
       console.info(data);
-      alert(JSON.stringify(data));
+      alert(JSON.stringify(data, null, 4));
       //
     } catch (error) {
       console.error("Ошибка обработчика ссылки экспорта: ", error);
