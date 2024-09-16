@@ -9,7 +9,7 @@ class IDB {
     try {
       const db = new Dexie("checkMarks");
       db.version(1).stores({
-        checkMarks: "++id, type, timestamp, title",
+        checkMarks: "++id, type, timestamp, datestring, timestring",
       });
       return db;
     } catch (error) {
