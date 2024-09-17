@@ -61,7 +61,8 @@ function App() {
     const newCheckMark = {
       type: "checkOut",
       timestamp: Number(date.getTime()),
-      title: makeTimeStringValue(date),
+      datestring: date.toLocaleDateString(),
+      timestring: makeTimeStringValue(date),
     };
     console.info("[click!] Есть уход:", newCheckMark);
     db.save(newCheckMark);
