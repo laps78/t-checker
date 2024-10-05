@@ -6,6 +6,7 @@ import {
   makeTimeStringValue,
 } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
+import Calendar from "react-calendar";
 
 export interface checkMark {
   type: string;
@@ -14,14 +15,15 @@ export interface checkMark {
 }
 
 function App() {
+  const [ calendarValue, setCalendarValue ] = useState(new Date());
   const db = new IDB();
   const lastMarkSign = () => {
     const lastmarkStored = localStorage.getItem("lastMark");
     const lastmark = JSON.parse(lastmarkStored) || "";
     console.log(lastmarkStored, lastmark);
-    const sign = `Последняя отметка: [ ${lastmark.type} ] ${String(
-      new Date(lastmark.timestamp)
-    )}`;
+    const sign = `[ ${lastmark.type} ] ${
+      new Date(lastmark.timestamp).toLocaleDateString()
+    }: ${new Date(lastmark.timestamp).toLocaleTimeString()}`;
     if (lastmark === "") {
       return "";
     }
@@ -100,7 +102,15 @@ function App() {
       <main>
         <DigitalClock />
         <h1>{`Я сейчас | ${workStatus.name}`}</h1>
-        <p className="last_mark_sign">{lastMarkSign()}</p>
+        <p className="last_mark_sign">Последняя отметка:<br />{lastMarkSign()}</p>
+        <div className="calendar__wrapper">
+          <Calendar
+            className="Calendar"
+            onChange={setCalendarValue}
+            value={calendarValue}
+            showNavigation={false}
+          />
+        </div>
         <div className="card">
           <p>
             <a href="#" onClick={handleExportLink}>
