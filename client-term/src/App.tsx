@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
 import {
@@ -15,12 +15,18 @@ export interface checkMark {
 }
 
 function App() {
+  const [currentDate, setCurrentDate] = useState(
+    makeTimeStringValue(new Date())
+  );
+
   const [calendarValue, setCalendarValue] = useState(new Date());
+
   const db = new IDB();
+
   const lastMarkSign = () => {
     const lastmarkStored = localStorage.getItem("lastMark");
     const lastmark = JSON.parse(lastmarkStored) || "";
-    console.log(lastmarkStored, lastmark);
+
     const sign = `[ ${lastmark.type} ] ${new Date(
       lastmark.timestamp
     ).toLocaleDateString()}: ${new Date(
@@ -87,6 +93,14 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newActualTimeString = makeTimeStringValue(new Date());
+      setCurrentDate(newActualTimeString);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [currentDate]);
+
   return (
     <>
       <header>
@@ -102,8 +116,7 @@ function App() {
         </div>
       </header>
       <main>
-        <DigitalClock />
-        <h1>{`Я сейчас | ${workStatus.name}`}</h1>
+        <h1 className="mainPage__header">{`${currentDate} | ${workStatus.name}`}</h1>
         <p className="last_mark_sign">
           Последняя отметка:
           <br />

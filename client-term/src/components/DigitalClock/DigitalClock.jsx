@@ -16,6 +16,7 @@ export function makeTimeStringValue(currentTime) {
 export function DigitalClock() {
   const actualTimeString = makeTimeStringValue(new Date());
   const [currentTimeString, setCurrentTimeString] = useState(actualTimeString);
+
   useEffect(() => {
     const interval = setInterval(() => {
       const newActualTimeString = makeTimeStringValue(new Date());
