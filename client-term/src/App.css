@@ -44,6 +44,8 @@ header {
 
 h1.mainPage__header {
   font-size: 2.8rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .logo__span {
