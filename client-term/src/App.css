@@ -108,7 +108,7 @@ footer {
   align-items: center;
   cursor: pointer;
   user-select: none;
-  border-radius: 3rem;
+  border-radius: 0.73rem;
 }
 
 .footer-button:hover {
