@@ -63,6 +63,9 @@ importers:
       vite:
         specifier: ^5.4.2
         version: 5.4.8
+      vite-plugin-restart:
+        specifier: ^0.4.1
+        version: 0.4.1(vite@5.4.8)
 
 packages:
 
@@ -1225,6 +1228,11 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  vite-plugin-restart@0.4.1:
+    resolution: {integrity: sha512-MYhDFaa2HMoSavr/2pShj6toKVFso+zqF6FAdWGC8JSIrsNig+4giy9EzoSySgGRJvsnbwZXKdjAvn8ag8rUkA==}
+    peerDependencies:
+      vite: ^2.9.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
 
   vite@5.4.8:
     resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
@@ -2397,6 +2405,11 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  vite-plugin-restart@0.4.1(vite@5.4.8):
+    dependencies:
+      micromatch: 4.0.8
+      vite: 5.4.8
 
   vite@5.4.8:
     dependencies:

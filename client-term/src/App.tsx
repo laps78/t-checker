@@ -15,15 +15,17 @@ export interface checkMark {
 }
 
 function App() {
-  const [ calendarValue, setCalendarValue ] = useState(new Date());
+  const [calendarValue, setCalendarValue] = useState(new Date());
   const db = new IDB();
   const lastMarkSign = () => {
     const lastmarkStored = localStorage.getItem("lastMark");
     const lastmark = JSON.parse(lastmarkStored) || "";
     console.log(lastmarkStored, lastmark);
-    const sign = `[ ${lastmark.type} ] ${
-      new Date(lastmark.timestamp).toLocaleDateString()
-    }: ${new Date(lastmark.timestamp).toLocaleTimeString()}`;
+    const sign = `[ ${lastmark.type} ] ${new Date(
+      lastmark.timestamp
+    ).toLocaleDateString()}: ${new Date(
+      lastmark.timestamp
+    ).toLocaleTimeString()}`;
     if (lastmark === "") {
       return "";
     }
@@ -102,7 +104,11 @@ function App() {
       <main>
         <DigitalClock />
         <h1>{`Я сейчас | ${workStatus.name}`}</h1>
-        <p className="last_mark_sign">Последняя отметка:<br />{lastMarkSign()}</p>
+        <p className="last_mark_sign">
+          Последняя отметка:
+          <br />
+          {lastMarkSign()}
+        </p>
         <div className="calendar__wrapper">
           <Calendar
             className="Calendar"
