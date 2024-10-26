@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
 import {
-  DigitalClock,
   makeTimeStringValue,
 } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
