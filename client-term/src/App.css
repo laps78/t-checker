@@ -135,9 +135,3 @@ footer {
 .read-the-docs {
   color: #888;
 }
-
-.react-calendar__month-view__weekdays__weekday,
-.react-calendar__month-view__weekdays__weekday--current,
-.react-calendar__month-view__weekdays__weekday--weekend {
-  text-align: center;
-}

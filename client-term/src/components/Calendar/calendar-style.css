@@ -1,0 +1,21 @@
+button.react-calendar__navigation__arrow {
+  display: none;
+}
+
+button.react-calendar__navigation__label {
+  width: 100%;
+}
+
+button.react-calendar__month-view__days__day {
+  border: 1px solid grey;
+}
+
+button.react-calendar__month-view__days__day--neighboringMonth {
+  border: none;
+}
+
+.react-calendar__month-view__weekdays__weekday,
+.react-calendar__month-view__weekdays__weekday--current,
+.react-calendar__month-view__weekdays__weekday--weekend {
+  text-align: center;
+}
