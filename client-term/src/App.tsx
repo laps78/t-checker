@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
-import {
-  makeTimeStringValue,
-} from "./components/DigitalClock/DigitalClock.jsx";
+import { makeTimeStringValue } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
-import Calendar from "react-calendar";
+import { CalendarUI } from "./components/Calendar/CalendarUI.js";
 
 export interface checkMark {
   type: string;
@@ -17,8 +15,6 @@ function App() {
   const [currentDate, setCurrentDate] = useState(
     makeTimeStringValue(new Date())
   );
-
-  const [calendarValue, setCalendarValue] = useState(new Date());
 
   const db = new IDB();
 
@@ -42,6 +38,7 @@ function App() {
     currentWorkStatus = JSON.parse(savedStatus);
   }
   const [workStatus, setWorkStatus] = useState(currentWorkStatus);
+
   const handleIncomeClick = (event: MouseEvent | TouchEvent) => {
     event.preventDefault();
     if (workStatus === workStatuses[1]) {
@@ -92,6 +89,9 @@ function App() {
     }
   };
 
+  /**
+   * main page digital clocks effect
+   */
   useEffect(() => {
     const interval = setInterval(() => {
       const newActualTimeString = makeTimeStringValue(new Date());
@@ -119,16 +119,11 @@ function App() {
         <p className="last_mark_sign">
           Последняя отметка:
           <br />
-          {lastMarkSign()}
+          {lastMarkSign() || "Еще не зарегистрировано"}
         </p>
-        <div className="calendar__wrapper">
-          <Calendar
-            className="Calendar"
-            onChange={setCalendarValue}
-            value={calendarValue}
-            showNavigation={false}
-          />
-        </div>
+
+        <CalendarUI />
+
         <div className="card">
           <p>
             <a href="#" onClick={handleExportLink}>
