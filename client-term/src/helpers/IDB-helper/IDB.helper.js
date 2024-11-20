@@ -36,6 +36,14 @@ class IDB {
     return arrayMarks;
   }
 
+  async getMarksByDatestring(queryString) {
+    const matchedMarkArray = await this.db.checkMarks
+      .where("datestring")
+      .equals(queryString)
+      .toArray();
+    return matchedMarkArray;
+  }
+
   /**
    * этот рабочий асинхронный метод еще нигде не использован
    */

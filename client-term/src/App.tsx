@@ -82,7 +82,13 @@ function App() {
       const data = await db.getAllMarks();
       // working on data to export
       console.info(data);
-      alert(JSON.stringify(data, null, 4));
+      if (data.length > 0) {
+        alert(JSON.stringify(data, null, 4));
+      } else {
+        alert(
+          "Ничего не получается отобразить: нет сохраненных отметок.\n\nЕсли вы уверены, что метки все же есть, но раз за разом, вновь и вновь видите это сообющение - напишите разработчику."
+        );
+      }
       //
     } catch (error) {
       console.error("Ошибка обработчика ссылки экспорта: ", error);
@@ -122,7 +128,7 @@ function App() {
           {lastMarkSign() || "Еще не зарегистрировано"}
         </p>
 
-        <CalendarUI />
+        <CalendarUI db={db} />
 
         <div className="card">
           <p>
