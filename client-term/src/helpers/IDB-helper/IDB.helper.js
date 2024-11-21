@@ -36,6 +36,11 @@ class IDB {
     return arrayMarks;
   }
 
+  /**
+   *
+   * @param {string} queryString строка datestring для поиска соответствия
+   * @returns {array} массив найденных значений или пустой массив
+   */
   async getMarksByDatestring(queryString) {
     const matchedMarkArray = await this.db.checkMarks
       .where("datestring")
@@ -46,6 +51,7 @@ class IDB {
 
   /**
    * этот рабочий асинхронный метод еще нигде не использован
+   * @returns последнюю запись по дате
    */
   async getLastMark() {
     try {
