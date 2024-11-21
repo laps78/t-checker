@@ -10,6 +10,15 @@ button.react-calendar__month-view__days__day {
   border: 1px solid grey;
 }
 
+button.react-calendar__tile--active {
+  border: 2px solid #ff7700;
+}
+
+button.react-calendar__tile--now {
+  background-color: #0077ff;
+  border: 1px solid #0077ff;
+}
+
 button.react-calendar__month-view__days__day--neighboringMonth {
   border: none;
 }
