@@ -25,7 +25,7 @@ export default function DailyInfoCard({ date, stats }) {
 
   return (
     <>
-      <h3>{date}</h3>
+      <h3>{date}:</h3>
       <DailyInfo />
     </>
   );
