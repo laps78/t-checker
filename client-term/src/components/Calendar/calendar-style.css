@@ -16,7 +16,6 @@ button.react-calendar__tile--active {
 
 button.react-calendar__tile--now {
   background-color: #0077ff;
-  border: 1px solid #0077ff;
 }
 
 button.react-calendar__month-view__days__day--neighboringMonth {
@@ -27,4 +26,18 @@ button.react-calendar__month-view__days__day--neighboringMonth {
 .react-calendar__month-view__weekdays__weekday--current,
 .react-calendar__month-view__weekdays__weekday--weekend {
   text-align: center;
+}
+
+.daily_card_stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.daily_card_stats > .statsRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  width: 100%;
 }

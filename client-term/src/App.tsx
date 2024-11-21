@@ -133,7 +133,7 @@ function App() {
         <div className="card">
           <p>
             <a href="#" onClick={handleExportLink}>
-              Сохраненные записи
+              Все сохраненные отметки
             </a>
           </p>
         </div>

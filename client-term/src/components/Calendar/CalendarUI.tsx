@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "./calendar-style.css";
+import DailyInfoCard from "./Calendar.Day.Card";
 
 export function CalendarUI({ db }) {
   const [calendarValue, setCalendarValue] = useState(new Date());
-
+  const [selectedDay, setSelectedDay] = useState(
+    "Выберите интересующую вас дату, чтобы увадеть информацию о рабочем времени"
+  );
+  const [dayStats, setDayStats] = useState("");
   const dayClickHandler = async (value, event) => {
     const selectedDateLocaleString = value.toLocaleDateString();
+    setSelectedDay(selectedDateLocaleString);
     /**
      *
      * @param {array} foundMarks не пустой массив найденных значений
@@ -21,14 +26,21 @@ export function CalendarUI({ db }) {
       const workedOutMinutes: number = Number((workedOutSec / 60).toFixed(0));
       const workedOutHours: number = Math.floor(Number(workedOutMinutes) / 60);
       const restMinutes: number = workedOutMinutes - workedOutHours * 60;
-
-      return `Статистика рабочей смены ${foundMarks[0].datestring}:\n
+      const statsString = `Статистика рабочей смены ${foundMarks[0].datestring}:\n
       ПРИХОД: ${checkinTimeString}\n
       УХОД: ${checkoutTimeString}\n
       -----------------------------\n
       ОТРАБОТАНО:\n
       ${workedOutHours} часов ${restMinutes} минут\n
       (${workedOutMinutes} минут)`;
+      const stats = {
+        checkinTimeString,
+        checkoutTimeString,
+        workedOutHours,
+        restMinutes,
+      };
+      setDayStats(stats);
+      return statsString;
     };
 
     const matchedMarksArray = await db.getMarksByDatestring(
@@ -36,9 +48,9 @@ export function CalendarUI({ db }) {
     );
 
     if (matchedMarksArray.length > 0) {
-      alert(prepareFoundMarkMessage(matchedMarksArray));
+      prepareFoundMarkMessage(matchedMarksArray);
     } else {
-      alert("ничего не найдено");
+      setDayStats("");
     }
   };
 
@@ -51,6 +63,7 @@ export function CalendarUI({ db }) {
         value={calendarValue}
         showNavigation={true}
       />
+      <DailyInfoCard date={selectedDay} stats={dayStats} />
     </div>
   );
 }
