@@ -17,17 +17,18 @@ export function CalendarUI({ db }) {
       const checkoutTimeString = foundMarks[1].timestring;
       const workedOutMilis =
         Number(foundMarks[1].timestamp) - Number(foundMarks[0].timestamp);
-      const workedOutSec = workedOutMilis / 1000;
-      const workedOutMinutes = (workedOutSec / 60).toFixed(0);
-      const workedOutHours = (workedOutMinutes / 60).toFixed(0);
+      const workedOutSec: number = workedOutMilis / 1000;
+      const workedOutMinutes: number = Number((workedOutSec / 60).toFixed(0));
+      const workedOutHours: number = Math.floor(Number(workedOutMinutes) / 60);
+      const restMinutes: number = workedOutMinutes - workedOutHours * 60;
+
       return `Статистика рабочей смены ${foundMarks[0].datestring}:\n
       ПРИХОД: ${chheckinTimeString}\n
       УХОД: ${checkoutTimeString}\n
       -----------------------------\n
       ОТРАБОТАНО:\n
-      секунд: ${workedOutSec}\n
-      минут: ${workedOutMinutes}\n
-      часов: ${workedOutHours}`;
+      ${workedOutHours} часов ${restMinutes} минут\n
+      (${workedOutMinutes} минут)`;
     };
 
     const matchedMarksArray = await db.getMarksByDatestring(
