@@ -3,7 +3,7 @@ import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.ts";
 import { makeTimeStringValue } from "./components/DigitalClock/DigitalClock.tsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.ts";
-import Calendar from "react-calendar";
+import { CalendarUI } from "./components/Calendar/CalendarUI.tsx";
 
 // type declarations
 export type event = MouseEventHandler<HTMLDivElement>;
