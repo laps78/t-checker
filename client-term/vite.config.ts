@@ -10,4 +10,6 @@ export default defineConfig({
       restart: ["*.[jt]s", "*.css", "*.[jt]sx", "*.html"],
     }),
   ],
+  base: "/t-checker/",
+  build: {}
 });
