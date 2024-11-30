@@ -6,7 +6,7 @@ import DailyInfoCard from "./Calendar.Day.Card";
 export function CalendarUI({ db }) {
   const [calendarValue, setCalendarValue] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(
-    "Выберите интересующую вас дату, чтобы увадеть информацию о рабочем времени"
+    "Выберите интересующую вас дату, чтобы увидеть информацию о рабочем времени"
   );
   const [dayStats, setDayStats] = useState("");
   const dayClickHandler = async (value, event) => {
