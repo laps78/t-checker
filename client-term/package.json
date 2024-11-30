@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview --port 8080",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "dexie": "^4.0.8",

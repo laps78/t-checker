@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts"],"errors":true,"version":"5.6.2"}
+{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/Calendar/Calendar.Day.Card.tsx","./src/components/Calendar/CalendarUI.tsx","./src/components/DigitalClock/DigitalClock.tsx","./src/helpers/IDB-helper/IDB.helper.ts","./src/preferences/workstatuses.data.ts"],"errors":true,"version":"5.6.2"}
