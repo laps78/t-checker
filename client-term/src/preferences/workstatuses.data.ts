@@ -1,4 +1,11 @@
-export const workStatuses = [
+interface WorkStatus {
+  name: string,
+  bool: boolean,
+  id: number,
+  comment: string,
+}
+
+const workStatuses: Array<WorkStatus> = [
   {
     name: "не работаю",
     bool: false,

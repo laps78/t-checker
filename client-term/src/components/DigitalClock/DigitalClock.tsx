@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export function makeTimeStringValue(currentTime) {
-  let hours = currentTime.getHours();
-  hours < 10 ? (hours = `0${hours}`) : (hours = `${hours}`);
-
-  let minutes = currentTime.getMinutes();
-  minutes < 10 ? (minutes = `0${minutes}`) : (minutes = `${minutes}`);
-
-  let seconds = currentTime.getSeconds();
-  seconds < 10 ? (seconds = `0${seconds}`) : (seconds = `${seconds}`);
-
-  return `${hours}:${minutes}:${seconds}`;
+export function makeTimeStringValue(currentTime: Date): string {
+  return currentTime.toLocaleTimeString();
 }
 
 export function DigitalClock() {

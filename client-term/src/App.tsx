@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import workStatuses from "./preferences/workstatuses.data.js";
-import { makeTimeStringValue } from "./components/DigitalClock/DigitalClock.jsx";
-import IDB from "./helpers/IDB-helper/IDB.helper.js";
-import { CalendarUI } from "./components/Calendar/CalendarUI.js";
+import workStatuses from "./preferences/workstatuses.data.ts";
+import { makeTimeStringValue } from "./components/DigitalClock/DigitalClock.tsx";
+import IDB from "./helpers/IDB-helper/IDB.helper.ts";
+import Calendar from "react-calendar";
 
+// type declarations
+export type event = MouseEventHandler<HTMLDivElement>;
 export interface checkMark {
   type: string;
   timestamp: number;
@@ -38,8 +40,7 @@ function App() {
     currentWorkStatus = JSON.parse(savedStatus);
   }
   const [workStatus, setWorkStatus] = useState(currentWorkStatus);
-
-  const handleIncomeClick = (event: MouseEvent | TouchEvent) => {
+  const handleIncomeClick = (event: event) => {
     event.preventDefault();
     if (workStatus === workStatuses[1]) {
       return;
@@ -58,11 +59,12 @@ function App() {
     localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
   };
 
-  const handleOutcomeClick = (event: MouseEvent | TouchEvent) => {
+  const handleOutcomeClick = (event: event) => {
     event.preventDefault();
     if (workStatus === workStatuses[0]) {
       return;
     }
+
     const date = new Date();
     const newCheckMark = {
       type: "checkOut",
