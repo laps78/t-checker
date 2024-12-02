@@ -2,18 +2,27 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "./calendar-style.css";
 import DailyInfoCard from "./Calendar.Day.Card";
+import { EditorPopup } from "./editDailyMarks.popup";
 
 export function CalendarUI({ db }) {
   const [calendarValue, setCalendarValue] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(
     "Выберите интересующую вас дату, чтобы увидеть информацию о рабочем времени"
   );
+  const [isEditing, setEditing] = useState(false);
   const [dayStats, setDayStats] = useState("");
+  /**
+   *
+   */
+  const editHandler = () => {
+    setEditing(true);
+    console.log(selectedDay);
+  };
   const dayClickHandler = async (value, event) => {
     const selectedDateLocaleString = value.toLocaleDateString();
     setSelectedDay(selectedDateLocaleString);
+
     /**
-     *
      * @param {array} foundMarks не пустой массив найденных значений
      * @returns строку для вывода элементе статистики смены
      */
@@ -64,6 +73,10 @@ export function CalendarUI({ db }) {
         showNavigation={true}
       />
       <DailyInfoCard date={selectedDay} stats={dayStats} />
+      <a className="daily_card_edit_link" onClick={editHandler}>
+        Изменить
+      </a>
+      <EditorPopup day={selectedDay} />
     </div>
   );
 }

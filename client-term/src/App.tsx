@@ -21,7 +21,7 @@ function App() {
   const db = new IDB();
 
   const lastMarkSign = () => {
-    const lastmarkStored = localStorage.getItem("lastMark");
+    const lastmarkStored: string | null = localStorage.getItem("lastMark");
     const lastmark = JSON.parse(lastmarkStored) || "";
 
     const sign = `[ ${lastmark.type} ] ${new Date(
@@ -36,7 +36,8 @@ function App() {
   };
   let currentWorkStatus = workStatuses[0];
   if (localStorage.getItem("currentWorkStatus")) {
-    const savedStatus: string = localStorage.getItem("currentWorkStatus");
+    const savedStatus: string | null =
+      localStorage.getItem("currentWorkStatus");
     currentWorkStatus = JSON.parse(savedStatus);
   }
   const [workStatus, setWorkStatus] = useState(currentWorkStatus);
@@ -88,7 +89,7 @@ function App() {
         alert(JSON.stringify(data, null, 4));
       } else {
         alert(
-          "Ничего не получается отобразить: нет сохраненных отметок.\n\nЕсли вы уверены, что метки все же есть, но раз за разом, вновь и вновь видите это сообющение - напишите разработчику."
+          "Ничего не получается отобразить: нет сохраненных отметок.\nПорытайтесь добавить метку вручную.\n\nЕсли вы уверены, что метки все же есть, но раз за разом, вновь и вновь видите это сообющение - напишите разработчику."
         );
       }
       //

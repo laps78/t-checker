@@ -41,3 +41,18 @@ button.react-calendar__month-view__days__day--neighboringMonth {
 hr {
   width: 100%;
 }
+
+.daily_card_edit_link {
+  display: block;
+  width: 100%;
+  text-align: right;
+  cursor: pointer;
+}
+
+.editor__popup {
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}

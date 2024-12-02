@@ -1,15 +1,18 @@
 export default function DailyInfoCard({ date, stats }) {
   const { checkinTimeString, checkoutTimeString, workedOutHours, restMinutes } =
     stats;
+  /**
+   * component code
+   */
   const DailyInfo = () => {
     if (stats !== "") {
       return (
         <div className="daily_card_stats">
           <span className="statsRow">
-            <strong>ПРИХОД:</strong> {checkinTimeString || "нет отметок"}
+            <strong>ПРИХОД:</strong> {checkinTimeString || "нет отметок"}{" "}
           </span>
           <span className="statsRow">
-            <strong>УХОД:</strong> {checkoutTimeString || "нет отметок"}
+            <strong>УХОД:</strong> {checkoutTimeString || "нет отметок"}{" "}
           </span>
           <hr />
           <span className="statsRow">
@@ -19,7 +22,7 @@ export default function DailyInfoCard({ date, stats }) {
         </div>
       );
     } else {
-      return "нет отметок";
+      return "нет отметок в выбранную дату";
     }
   };
 
