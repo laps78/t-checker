@@ -1,6 +1,6 @@
 # t-checker api
 
-![t-checker-logo](./client-term/src/assets/t-ckecker.sketch.png "t-checker logo")
+![t-checker-logo](./client-term/src/assets/t-ckecker-512.png "t-checker logo")
 
 v0.1 features:
 
