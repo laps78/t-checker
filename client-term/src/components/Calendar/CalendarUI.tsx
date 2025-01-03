@@ -15,7 +15,7 @@ export function CalendarUI({ db }) {
     /**
      *
      * @param {array} foundMarks не пустой массив найденных значений
-     * @returns строку для вывода элементе статистики смены
+     * @returns строку для вывода в элементе статистики смены
      */
     const prepareFoundMarkMessage = (foundMarks) => {
       const checkinTimeString = foundMarks[0].timestring;
@@ -26,6 +26,7 @@ export function CalendarUI({ db }) {
       const workedOutMinutes: number = Number((workedOutSec / 60).toFixed(0));
       const workedOutHours: number = Math.floor(Number(workedOutMinutes) / 60);
       const restMinutes: number = workedOutMinutes - workedOutHours * 60;
+
       const statsString = `Статистика рабочей смены ${foundMarks[0].datestring}:\n
       ПРИХОД: ${checkinTimeString}\n
       УХОД: ${checkoutTimeString}\n
@@ -33,6 +34,7 @@ export function CalendarUI({ db }) {
       ОТРАБОТАНО:\n
       ${workedOutHours} часов ${restMinutes} минут\n
       (${workedOutMinutes} минут)`;
+
       const stats = {
         checkinTimeString,
         checkoutTimeString,
