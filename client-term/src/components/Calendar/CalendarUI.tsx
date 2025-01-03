@@ -15,7 +15,7 @@ export function CalendarUI({ db }) {
     /**
      *
      * @param {array} foundMarks не пустой массив найденных значений
-     * @returns строку для вывода элементе статистики смены
+     * @returns строку для вывода в элементе статистики смены
      */
     const prepareFoundMarkMessage = (foundMarks) => {
       const checkinTimeString = foundMarks[0].timestring;
