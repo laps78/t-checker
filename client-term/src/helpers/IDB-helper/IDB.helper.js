@@ -50,6 +50,22 @@ class IDB {
   }
 
   /**
+   * @param {string} id - идентификатор записи
+   * @param {object} value - новое значение записи}
+   * Заменяет содержимое объекта по id
+   */
+  async updateMark(id, value) {
+    try {
+      const editedMark = await this.db.update(id, value);
+    } catch (error) {
+      console.error(
+        "[ IDB Module ] Ошибка редактирования записи в базе данных: ",
+        error.stack
+      );
+    }
+  }
+
+  /**
    * этот рабочий асинхронный метод еще нигде не использован
    * @returns последнюю запись по дате
    */
@@ -60,7 +76,7 @@ class IDB {
     } catch (error) {
       console.error(
         `[ IDB Module ] Ошибка чтения записи в базе данных: `,
-        error
+        error.stack
       );
     }
   }
