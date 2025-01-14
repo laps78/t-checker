@@ -1,32 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Calendar from "react-calendar";
 import "./calendar-style.css";
 import DailyInfoCard from "./Calendar.Day.Card";
-import { statsMaker } from "../../helpers/statsMaker";
 
 export function CalendarUI({ db }) {
   const [calendarValue, setCalendarValue] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(
-    "Выберите интересующую вас дату, чтобы увадеть информацию о рабочем времени"
+    calendarValue.toLocaleDateString()
   );
-  const [dayStats, setDayStats] = useState({});
+
   const dayClickHandler = async (value, event) => {
     const selectedDateLocaleString = value.toLocaleDateString();
     setSelectedDay(selectedDateLocaleString);
-
-    const matchedMarksArray = await db.getMarksByDatestring(
-      selectedDateLocaleString
-    );
-
-    if (matchedMarksArray.length > 0) {
-      //
-      console.info("[comming from dexie IDB]: ", matchedMarksArray);
-      //
-      const newDayStats = statsMaker(matchedMarksArray);
-      setDayStats(newDayStats);
-    } else {
-      setDayStats("");
-    }
   };
 
   return (
@@ -38,7 +23,7 @@ export function CalendarUI({ db }) {
         value={calendarValue}
         showNavigation={true}
       />
-      <DailyInfoCard date={selectedDay} stats={dayStats} db={db} />
+      <DailyInfoCard date={selectedDay} db={db} />
     </div>
   );
 }

@@ -77,24 +77,6 @@ function App() {
     localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
   };
 
-  const handleExportLink = async () => {
-    try {
-      const data = await db.getAllMarks();
-      // working on data to export
-      console.info(data);
-      if (data.length > 0) {
-        alert(JSON.stringify(data, null, 4));
-      } else {
-        alert(
-          "Ничего не получается отобразить: нет сохраненных отметок.\n\nЕсли вы уверены, что метки все же есть, но раз за разом, вновь и вновь видите это сообющение - напишите разработчику."
-        );
-      }
-      //
-    } catch (error) {
-      console.error("Ошибка обработчика ссылки экспорта: ", error);
-    }
-  };
-
   /**
    * main page digital clocks effect
    */
@@ -127,16 +109,7 @@ function App() {
           <br />
           {lastMarkSign() || "Еще не зарегистрировано"}
         </p>
-
         <CalendarUI db={db} />
-
-        <div className="card">
-          <p>
-            <a href="#" onClick={handleExportLink}>
-              Все сохраненные отметки
-            </a>
-          </p>
-        </div>
       </main>
       <footer className="footer">
         <div
