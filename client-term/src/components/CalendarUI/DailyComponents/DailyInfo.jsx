@@ -156,24 +156,38 @@ const DailyInfo = ({ dayStats, markData, db }) => {
             X
           </div>
         </div>
-        <form onSubmit={submitHandler}>
-          <label htmlFor="input_hours">Новое значение: часов</label>
-          <input
-            name="input_hours"
-            onChange={changeHoursHandler}
-            type="text"
-            className="edit_form_textinput"
-            placeholder={currentHours}
-          />
-          <label htmlFor="input_minutes">Новое значение: минут</label>
-          <input
-            name="input_minutes"
-            onChange={changeMinutesHandler}
-            type="text"
-            className="edit_form_textinput"
-            placeholder={currentMinutes}
-          />
-          <button type="submit">Сохранить</button>
+        <form onSubmit={submitHandler} className="EditForm">
+          <h3>Укажите новое значение:</h3>
+          <div className="timeInput">
+            <div className="leftCol">
+              <input
+                name="input_hours"
+                onChange={changeHoursHandler}
+                type="text"
+                className="edit_form_textinput"
+                placeholder={currentHours}
+              />
+              <label htmlFor="input_hours" className="editForm_textLabel">
+                часов
+              </label>
+            </div>
+            <div className="centerCol">:</div>
+            <div className="rightCol">
+              <input
+                name="input_minutes"
+                onChange={changeMinutesHandler}
+                type="text"
+                className="edit_form_textinput"
+                placeholder={currentMinutes}
+              />
+              <label htmlFor="input_minutes" className="editForm_textLabel">
+                минут
+              </label>
+            </div>
+          </div>
+          <button className="editForm_submit" type="submit">
+            Сохранить
+          </button>
         </form>
       </div>
     </>

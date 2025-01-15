@@ -57,23 +57,27 @@ hr {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  min-width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .EditFormPopupHeader {
-  width: 100%;
+  width: calc(100%-2rem);
+  max-width: calc(1280px - 2rem);
+  min-width: 360px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #0077ff;
-  padding: 0.5rem 0.5rem;
-  border-radius: 0.25rem 0.25rem 0 0;
+  margin: 1rem 1rem 0 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .popup_header_caption {
@@ -84,4 +88,58 @@ hr {
 
 .PopupCloseButton {
   cursor: pointer;
+}
+
+.EditForm {
+  width: calc(100%-2rem);
+  max-width: calc(1280px - 2rem);
+  min-width: 360px;
+  min-height: 7rem;
+  margin: 0 1rem 1rem 1rem;
+  padding: 1rem;
+  background-color: black;
+  border-radius: 0 0 0.5rem 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.timeInput {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: fit-content;
+}
+
+.centerCol {
+  text-align: center;
+  height: 100%;
+  font-size: 2.5rem;
+}
+.leftCol,
+.rightCol {
+  width: calc(100% - 2rem);
+  padding: 0 1rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.editForm_textLabel {
+  margin: 1rem;
+}
+
+.edit_form_textinput {
+  max-width: 6rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.editForm_submit {
+  max-width: 12rem;
+  margin: 1rem;
 }
