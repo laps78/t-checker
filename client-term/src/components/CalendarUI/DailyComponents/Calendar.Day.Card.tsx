@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EditMarkForm from "./editMark.form";
+import EditMarkForm from "../editMark.form";
 
 export default function DailyInfoCard({ date, stats, db }) {
   const [isFormHidden, setFormHidden] = useState(true);

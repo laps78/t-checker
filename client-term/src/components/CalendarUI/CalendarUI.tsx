@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
 import "./calendar-style.css";
-import DailyInfoCard from "./Calendar.Day.Card";
+import DailyInfoCard from "./DailyComponents/Calendar.Day.Card";
 
 export function CalendarUI({ db }) {
   const [calendarValue, setCalendarValue] = useState(new Date());

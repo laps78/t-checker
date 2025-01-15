@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { statsMaker } from "../../helpers/statsMaker";
+import { statsMaker } from "../../../helpers/statsMaker";
 import DailyInfo from "./DailyInfo";
 
 const dontHaveMarksString =
@@ -28,7 +28,7 @@ export function DailyInfoCard({ date, db }) {
           );
           setLoading(false);
           return (
-            <>{`Ууупс!.. Что пошло не так.=( Попробуйте обновить страницу.`}</>
+            <>{`Упс!.. Что пошло не так.=( Попробуйте обновить страницу.`}</>
           );
         })
         .finally(() => {

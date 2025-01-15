@@ -3,7 +3,7 @@ import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
 import { makeTimeStringValue } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
-import { CalendarUI } from "./components/Calendar/CalendarUI.js";
+import { CalendarUI } from "./components/CalendarUI/CalendarUI.js";
 
 export interface checkMark {
   type: string;

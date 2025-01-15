@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EditMarkForm from "./editMark.form";
+import EditMarkForm from "../editMark.form";
 
 const DailyInfo = ({ dayStats }) => {
   console.log("daystats: ", dayStats);
