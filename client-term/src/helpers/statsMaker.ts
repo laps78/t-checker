@@ -4,6 +4,7 @@
  * @returns строку для вывода элементе статистики смены
  */
 export const statsMaker = (foundMarks) => {
+  console.log(foundMarks.value);
   const checkinTimeString = foundMarks[0].timestring;
   const checkoutTimeString = foundMarks[1].timestring;
   const workedOutMilis =

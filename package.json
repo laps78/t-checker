@@ -22,6 +22,7 @@
     "url": "https://github.com/laps78/t-checker/issues"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "react-async": "^10.0.1"
   }
 }
