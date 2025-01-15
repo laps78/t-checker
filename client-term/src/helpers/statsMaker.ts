@@ -31,7 +31,6 @@ export const statsMaker = (foundMarks) => {
     );
     const unClosedDayWorkedOutTimeRestMin: number =
       unClosedDayWorkedOutTimeMin - unClosedDayWorkedOutTimeHours * 60;
-    console.log("here?", unClosedDayWorkedOutTimeMin);
     return {
       checkinTimeString: foundMarks[0].timestring,
       checkoutTimeString: "нет отметки",

@@ -16,7 +16,6 @@ export function DailyInfoCard({ date, db }) {
       setLoading(true);
       db.getMarksByDatestring(date)
         .then((result) => {
-          console.log("result: ", result);
           setData(result);
           setLoading(false);
           ignore = true;
@@ -46,7 +45,7 @@ export function DailyInfoCard({ date, db }) {
   return (
     <>
       <h3>{date}</h3>
-      <DailyInfo dayStats={statsMaker(data)} />
+      <DailyInfo dayStats={statsMaker(data)} markData={data} db={db} />
     </>
   );
 }

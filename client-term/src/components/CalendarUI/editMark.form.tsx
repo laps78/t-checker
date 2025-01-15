@@ -49,7 +49,10 @@ export const EditMarkForm = (db, markData) => {
       timestamp: newTimestamp,
       timestring: newTimestring,
     };
-    await db.update(markData.id, { newMarkData });
+    await db.update(markData.id, {
+      timestamp: newTimestamp,
+      timestring: newTimestring,
+    });
     setHidden(!isHidden);
   };
   return (
@@ -60,7 +63,7 @@ export const EditMarkForm = (db, markData) => {
           X
         </div>
       </div>
-      <form onSubmit={submitHandler}>
+      <form className="EditMarkForm" onSubmit={submitHandler}>
         <input
           onChange={changeHoursHandler}
           type="text"

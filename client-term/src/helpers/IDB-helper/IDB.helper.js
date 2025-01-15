@@ -54,12 +54,25 @@ class IDB {
    * @param {object} value - новое значение записи}
    * Заменяет содержимое объекта по id
    */
-  async updateMark(id, value) {
+  async updateMark(id, changes) {
     try {
-      const editedMark = await this.db.update(id, value);
+      await this.db.checkMarks.update(id, changes);
     } catch (error) {
       console.error(
         "[ IDB Module ] Ошибка редактирования записи в базе данных: ",
+        error,
+        error.stack
+      );
+    }
+  }
+
+  async deleteMark(id) {
+    try {
+      await this.db.checkMarks.delete(id);
+    } catch (error) {
+      console.error(
+        "[ IDB Module ] Ошибка удаления записи из базы данных: ",
+        error,
         error.stack
       );
     }
