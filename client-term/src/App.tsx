@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
 import "./App.css";
 import workStatuses from "./preferences/workstatuses.data.js";
-import { makeTimeStringValue } from "./components/DigitalClock/DigitalClock.jsx";
+import { DigitalClock } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
 import { CalendarUI } from "./components/CalendarUI/CalendarUI.js";
+import useLocalstorage from "./helpers/useLocalStorage";
 
 export interface checkMark {
   type: string;
@@ -12,36 +12,30 @@ export interface checkMark {
 }
 
 function App() {
-  const [currentDate, setCurrentDate] = useState(
-    makeTimeStringValue(new Date())
+  const [currentWorkStatus, setCurrentWorkStatus] = useLocalstorage(
+    "currentWorkStatus",
+    workStatuses[0]
   );
+  const [lastMark, setLastMark] = useLocalstorage("lastMark", null);
 
   const db = new IDB();
 
   const lastMarkSign = () => {
-    const lastmarkStored = localStorage.getItem("lastMark");
-    const lastmark = JSON.parse(lastmarkStored) || "";
-
-    const sign = `[ ${lastmark.type} ] ${new Date(
-      lastmark.timestamp
-    ).toLocaleDateString()}: ${new Date(
-      lastmark.timestamp
-    ).toLocaleTimeString()}`;
-    if (lastmark === "") {
+    if (lastMark === null) {
       return "";
     }
-    return String(sign);
+
+    const sign = `[ ${lastMark.type} ] ${new Date(
+      lastMark.timestamp
+    ).toLocaleDateString()}: ${new Date(
+      lastMark.timestamp
+    ).toLocaleTimeString()}`;
+    return sign;
   };
-  let currentWorkStatus = workStatuses[0];
-  if (localStorage.getItem("currentWorkStatus")) {
-    const savedStatus: string = localStorage.getItem("currentWorkStatus");
-    currentWorkStatus = JSON.parse(savedStatus);
-  }
-  const [workStatus, setWorkStatus] = useState(currentWorkStatus);
 
   const handleIncomeClick = (event: MouseEvent | TouchEvent) => {
     event.preventDefault();
-    if (workStatus === workStatuses[1]) {
+    if (currentWorkStatus === workStatuses[1]) {
       return;
     }
     const date = new Date();
@@ -49,18 +43,16 @@ function App() {
       type: "checkIn",
       timestamp: Number(date.getTime()),
       datestring: date.toLocaleDateString(),
-      timestring: makeTimeStringValue(date),
+      timestring: date.toLocaleTimeString(),
     };
-    console.info("[click!] Есть приход:", newCheckMark);
     db.save(newCheckMark);
-    setWorkStatus(workStatuses[1]);
-    localStorage.setItem("currentWorkStatus", JSON.stringify(workStatuses[1]));
-    localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
+    setCurrentWorkStatus("currentWorkStatus", JSON.stringify(workStatuses[1]));
+    setLastMark("lastMark", JSON.stringify(newCheckMark));
   };
 
   const handleOutcomeClick = (event: MouseEvent | TouchEvent) => {
     event.preventDefault();
-    if (workStatus === workStatuses[0]) {
+    if (currentWorkStatus === workStatuses[0]) {
       return;
     }
     const date = new Date();
@@ -68,25 +60,13 @@ function App() {
       type: "checkOut",
       timestamp: Number(date.getTime()),
       datestring: date.toLocaleDateString(),
-      timestring: makeTimeStringValue(date),
+      timestring: date.toLocaleTimeString(),
     };
     console.info("[click!] Есть уход:", newCheckMark);
     db.save(newCheckMark);
-    setWorkStatus(workStatuses[0]);
-    localStorage.setItem("currentWorkStatus", JSON.stringify(workStatuses[0]));
-    localStorage.setItem("lastMark", JSON.stringify(newCheckMark));
+    setCurrentWorkStatus("currentWorkStatus", JSON.stringify(workStatuses[0]));
+    setLastMark("lastMark", JSON.stringify(newCheckMark));
   };
-
-  /**
-   * main page digital clocks effect
-   */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newActualTimeString = makeTimeStringValue(new Date());
-      setCurrentDate(newActualTimeString);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [currentDate]);
 
   return (
     <>
@@ -103,7 +83,10 @@ function App() {
         </div>
       </header>
       <main>
-        <h1 className="mainPage__header">{`${currentDate} | ${workStatus.name}`}</h1>
+        <div className="mainHeader">
+          <DigitalClock />
+          <h1 className="mainPage__header">{`${currentWorkStatus.name}`}</h1>
+        </div>
         <p className="last_mark_sign">
           Последняя отметка:
           <br />

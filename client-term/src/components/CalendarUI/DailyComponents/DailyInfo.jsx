@@ -2,7 +2,6 @@ import { useState } from "react";
 import parseDateTime from "../../../helpers/dateParser";
 
 const DailyInfo = ({ dayStats, markData, db }) => {
-  console.log(markData);
   const [isFormHidden, setFormHidden] = useState(true);
   const [nowEditing, setNowEditing] = useState({
     timestring: "00:00:00",
@@ -14,33 +13,33 @@ const DailyInfo = ({ dayStats, markData, db }) => {
     String(nowEditing.timestring.split(":")[1])
   );
 
-  // open form handlers
+  /**
+   * This following function makes checkMark mock
+   * for editor form purposes
+   */
+  // TODO - решть проблему отсутствия ключа у новых записей!
+  const addNewUnsavedMarkData = () => {
+    const now = new Date();
+    markData.push({
+      type: "checkOut",
+      timestamp: now.getTime().toString(),
+      datestring: now.toLocaleDateString(),
+      timestring: now.toLocaleDateString(),
+    });
+  };
+
+  // open edit form handlers
   const editCheckinHandler = (event) => {
+    if (markData.length === 0) {
+      addNewUnsavedMarkData();
+    }
     setNowEditing(markData[0]);
     setFormHidden(!isFormHidden);
   };
 
-  // delete mark button Handlers
-  const deleteCheckinHandler = () => {
-    if (markData[0]) {
-      db.deleteMark(markData[0].id);
-    }
-  };
-  const deleteCheckoutHandler = () => {
-    if (markData[1]) {
-      db.deleteMark(markData[1].id);
-    }
-  };
-
   const editCheckoutHandler = (event) => {
     if (markData.length < 2) {
-      const now = newDate();
-      markData.push({
-        type: "checkOut",
-        timestamp: now.getTime().toString(),
-        datestring: now.toLocaleDatestring(),
-        timestring: now.toLocaleDatestring(),
-      });
+      addNewUnsavedMarkData();
     }
     setNowEditing(markData[1]);
     setFormHidden(!isFormHidden);
@@ -58,6 +57,7 @@ const DailyInfo = ({ dayStats, markData, db }) => {
   };
 
   // input change handlers
+  // TODO FIX doesn't change displayed values somewhy...
   const changeHoursHandler = (event) => {
     //
     console.log("hours changed!");
@@ -95,6 +95,18 @@ const DailyInfo = ({ dayStats, markData, db }) => {
       timestring: newTimestring,
     });
     setFormHidden(!isFormHidden);
+  };
+
+  // delete mark button Handlers
+  const deleteCheckinHandler = () => {
+    if (markData[0] && markData[0].id) {
+      db.deleteMark(markData[0].id);
+    }
+  };
+  const deleteCheckoutHandler = () => {
+    if (markData[1] && markData[1].id) {
+      db.deleteMark(markData[1].id);
+    }
   };
 
   return (

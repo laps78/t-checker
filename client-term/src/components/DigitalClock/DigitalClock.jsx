@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from "react";
-
-export function makeTimeStringValue(currentTime) {
-  let hours = currentTime.getHours();
-  hours < 10 ? (hours = `0${hours}`) : (hours = `${hours}`);
-
-  let minutes = currentTime.getMinutes();
-  minutes < 10 ? (minutes = `0${minutes}`) : (minutes = `${minutes}`);
-
-  let seconds = currentTime.getSeconds();
-  seconds < 10 ? (seconds = `0${seconds}`) : (seconds = `${seconds}`);
-
-  return `${hours}:${minutes}:${seconds}`;
-}
+import { useState, useEffect } from "react";
+import "./DigitalClock.css";
 
 export function DigitalClock() {
-  const actualTimeString = makeTimeStringValue(new Date());
+  const actualTimeString = new Date().toLocaleTimeString();
   const [currentTimeString, setCurrentTimeString] = useState(actualTimeString);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const newActualTimeString = makeTimeStringValue(new Date());
+      const newActualTimeString = new Date().toLocaleTimeString();
       setCurrentTimeString(newActualTimeString);
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentTimeString]);
 
-  return currentTimeString;
+  return <div className="clock__string">&#8986;{currentTimeString}</div>;
 }
 
-export default { DigitalClock, makeTimeStringValue };
+export default { DigitalClock };

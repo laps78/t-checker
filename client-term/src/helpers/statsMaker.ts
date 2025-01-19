@@ -20,17 +20,18 @@ export const statsMaker = (foundMarks) => {
     const now: number = new Date().getTime();
     const unClosedDayWorkedOutTime: number =
       Number(now) - Number(foundMarks[0].timestamp);
-    const unClosedDayWorkedOutTimeSec: number = Math.round(
+    const unClosedDayWorkedOutTimeSec: number = (
       unClosedDayWorkedOutTime / 1000
-    );
-    const unClosedDayWorkedOutTimeMin: number = Math.round(
+    ).toFixed(0);
+    const unClosedDayWorkedOutTimeMin: number = (
       unClosedDayWorkedOutTimeSec / 60
-    );
-    const unClosedDayWorkedOutTimeHours: number = Math.round(
+    ).toFixed(0);
+    const unClosedDayWorkedOutTimeHours: number = (
       unClosedDayWorkedOutTimeMin / 60
-    );
+    ).toFixed(0);
     const unClosedDayWorkedOutTimeRestMin: number =
       unClosedDayWorkedOutTimeMin - unClosedDayWorkedOutTimeHours * 60;
+    console.log(unClosedDayWorkedOutTimeSec);
     return {
       checkinTimeString: foundMarks[0].timestring,
       checkoutTimeString: "нет отметки",
@@ -48,10 +49,11 @@ export const statsMaker = (foundMarks) => {
   const checkoutTimeString = foundMarks[1].timestring;
   const workedOutMilis =
     Number(foundMarks[1].timestamp) - Number(foundMarks[0].timestamp);
-  const workedOutSec: number = workedOutMilis / 1000;
-  const workedOutMinutes: number = Number((workedOutSec / 60).toFixed(0));
-  const workedOutHours: number = Math.floor(Number(workedOutMinutes) / 60);
+  const workedOutSec: number = (workedOutMilis / 1000).toFixed(0);
+  const workedOutMinutes: number = (workedOutSec / 60).toFixed(0);
+  const workedOutHours: number = (workedOutMinutes / 60).toFixed(0);
   const restMinutes: number = workedOutMinutes - workedOutHours * 60;
+  console.log(workedOutSec);
   const stats = {
     checkinTimeString,
     checkoutTimeString,
