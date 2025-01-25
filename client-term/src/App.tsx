@@ -4,6 +4,7 @@ import { DigitalClock } from "./components/DigitalClock/DigitalClock.jsx";
 import IDB from "./helpers/IDB-helper/IDB.helper.js";
 import { CalendarUI } from "./components/CalendarUI/CalendarUI.js";
 import useLocalstorage from "./helpers/useLocalStorage";
+//import parseDateTime from "./helpers/dateParser.js";
 
 export interface checkMark {
   type: string;
@@ -46,8 +47,8 @@ function App() {
       timestring: date.toLocaleTimeString(),
     };
     db.save(newCheckMark);
-    setCurrentWorkStatus("currentWorkStatus", JSON.stringify(workStatuses[1]));
-    setLastMark("lastMark", JSON.stringify(newCheckMark));
+    setCurrentWorkStatus(workStatuses[1]);
+    setLastMark(newCheckMark);
   };
 
   const handleOutcomeClick = (event: MouseEvent | TouchEvent) => {
@@ -62,10 +63,9 @@ function App() {
       datestring: date.toLocaleDateString(),
       timestring: date.toLocaleTimeString(),
     };
-    console.info("[click!] Есть уход:", newCheckMark);
     db.save(newCheckMark);
-    setCurrentWorkStatus("currentWorkStatus", JSON.stringify(workStatuses[0]));
-    setLastMark("lastMark", JSON.stringify(newCheckMark));
+    setCurrentWorkStatus(workStatuses[0]);
+    setLastMark(newCheckMark);
   };
 
   return (
