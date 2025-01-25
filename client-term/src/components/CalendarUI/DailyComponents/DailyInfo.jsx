@@ -1,7 +1,10 @@
 import { useState } from "react";
 import parseDateTime from "../../../helpers/dateParser";
+import statsMaker from "../../../helpers/statsMaker";
 
 const DailyInfo = ({ dayStats, markData, db }) => {
+  console.log("dayStats:", dayStats);
+  const [componentDayStats, setComponentDayStats] = useState(dayStats);
   const [isFormHidden, setFormHidden] = useState(true);
   const [nowEditing, setNowEditing] = useState({
     timestring: "00:00:00",
@@ -90,10 +93,12 @@ const DailyInfo = ({ dayStats, markData, db }) => {
     const newTimestring = `${currentHours}:${currentMinutes}:00`;
     const newDate = parseDateTime(markData[0].datestring, newTimestring);
     const newTimestamp = newDate.getTime();
+
     await db.updateMark(nowEditing.id, {
       timestamp: newTimestamp,
       timestring: newTimestring,
     });
+
     setFormHidden(!isFormHidden);
   };
 
@@ -115,7 +120,7 @@ const DailyInfo = ({ dayStats, markData, db }) => {
         <div className="statsRow__container">
           <span className="statsRow">
             <strong>ПРИХОД:</strong>
-            {`${dayStats.checkinTimeString || "нет отметок"}`}
+            {`${componentDayStats.checkinTimeString || "нет отметок"}`}
           </span>
           <a
             className="statsRow_edit_link"
@@ -135,7 +140,7 @@ const DailyInfo = ({ dayStats, markData, db }) => {
         <div className="statsRow__container">
           <span className="statsRow">
             <strong>УХОД:</strong>{" "}
-            {`${dayStats.checkoutTimeString || "нет отметок"}`}
+            {`${componentDayStats.checkoutTimeString || "нет отметок"}`}
           </span>
           <a
             className="statsRow_edit_link"

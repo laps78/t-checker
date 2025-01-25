@@ -8,7 +8,7 @@ function parseDateTime(dateStr, timeStr) {
 
   return new Date(
     Number.parseInt(dateParts[2]),
-    Number.parseInt(dateParts[1]),
+    Number.parseInt(dateParts[1] - 1),
     Number.parseInt(dateParts[0]),
     Number.parseInt(timeParts[0]),
     Number.parseInt(timeParts[1]),
